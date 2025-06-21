@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Slime Rancher - Game Download</title>
+  <style>
+    :root { --bg:#fef6e4;--fg:#1f2937;--primary:#ff66cc; }
+    body { margin:0; font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--fg); transition:background .3s,color .3s; }
+    body.dark { --bg:#1f2937;--fg:#fef6e4; }
+    .header { background:rgba(255,255,255,.8); padding:20px; text-align:center; position:relative; }
+    .header button { margin: 5px; padding:5px 10px; cursor:pointer; }
+    .header h1 { margin:0; font-size:2.5rem; color:var(--primary); }
+    .hero { height:300px; background:url('placeholder-banner.jpg') center/cover no-repeat; }
+    .container { max-width:1100px; margin:20px auto; padding:0 20px; }
+    .flex { display:flex; flex-wrap:wrap; gap:20px; }
+    .desc, .download, .gallery, .sysreq { background:rgba(255,255,255,.85); padding:20px; border-radius:10px; }
+    body.dark .desc,body.dark .download,body.dark .gallery,body.dark .sysreq { background:rgba(31,41,55,.85); }
+    .desc { flex:2; }
+    .download { flex:1; text-align:center; }
+    .download button, .download a { background:var(--primary); color:#fff; padding:15px 30px; border:none; border-radius:8px; font-size:1.1rem; cursor:pointer; text-decoration: none; display: inline-block; }
+    .download button:hover, .download a:hover { opacity:.9; }
+    .screenshot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 15px; }
+    .screenshot-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease; cursor: pointer; }
+    .screenshot-grid img:hover { transform: scale(1.03); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+    .credits { font-size: 0.8rem; text-align: center; margin-top: 10px; opacity: 0.7; }
+    iframe { width:100%; height:315px; border:none; border-radius:10px; }
+    .sysreq ul { list-style:★; margin-left:20px; }
+    .progress-bar { width: 100%; background: #ddd; border-radius: 10px; overflow: hidden; margin-top: 15px; display: none; }
+    .progress { height: 20px; width: 0%; background: var(--primary); transition: width 0.3s; }
+    /* Lightbox styles */
+    .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+    .modal-content { max-width: 90%; max-height: 90%; }
+    .close { position: absolute; top: 20px; right: 30px; color: white; font-size: 35px; cursor: pointer; }
+    @media(max-width:800px) { .flex { flex-direction:column; } .screenshot-grid img { width:100%; margin-bottom:10px; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Slime Rancher</h1>
+    <button onclick="toggleLang()">🇬🇧/🇭🇷</button>
+    <button onclick="toggleMode()">🌙/☀️</button>
+  </div>
+  <div class="hero"></div>
+
+  <div class="container">
+    <div class="desc">
+      <h2 data-en="About the Game" data-hr="O igri">About the Game</h2>
+      <p data-en="Welcome to the Far Far Range! Slime Rancher is a first‑person sandbox adventure where you wrangle adorable slimes, grow crops, build gadgets, and explore vibrant biomes."
+         data-hr="Dobrodošli u Far Far Range! Slime Rancher je sandbox avantura iz prvog lica u kojoj skupljate slatke slajmove, uzgajate usjeve, gradite uređaje i istražujete živopisne biome.">
+         Welcome to the Far Far Range! Slime Rancher is a first‑person sandbox adventure...
+      </p>
+      <h3 data-en="Key Features" data-hr="Ključne značajke">Key Features</h3>
+      <ul>
+        <li data-en="Collect & breed colorful slimes" data-hr="Skupljajte i uzgajajte šarene slajmove">Collect & breed colorful slimes</li>
+        <li data-en="Explore open zones like Dry Reef & Moss Blanket" data-hr="Istražujte otvorene zone poput Dry Reef i Moss Blanket">Explore open zones...</li>
+        <li data-en="Upgrade your ranch and Vacpack" data-hr="Nadogradite svoje imanje i Vacpack">Upgrade your ranch...</li>
+        <li data-en="Relax with a chill soundtrack" data-hr="Opustite se uz opuštajuću glazbu">Relax with a chill soundtrack</li>
+        <li data-en="Sell plorts for in‑game Newbucks" data-hr="Prodajte plortove za Newbuckse u igri">Sell plorts...</li>
+      </ul>
+      <h3>Trailer</h3>
+      <iframe src="https://www.youtube.com/embed/jDZUhN8pU9c" allowfullscreen></iframe>
+    </div>
+
+    <div class="download">
+      <div class="info">
+        <p><strong>Filename:</strong> Setup_SlimeRancher.exe</p>
+        <p><strong>Version:</strong> 2.1.0</p>
+        <p><strong>Size:</strong> 761 MB</p>
+        <p><strong>Platform:</strong> Windows 10/11</p>
+        <p><strong>Release:</strong> June 21, 2025</p>
+      </div>
+      <a href="https://mega.nz/file/CW5jgRoK#48CLz30wFK8xQ9cnChylQFKIA98UzOzxNCCYXBgLxok" target="_blank" rel="noopener noreferrer">
+        ⬇ <span data-en="Download Installer (via MEGA)" data-hr="Preuzmi Instalaciju (preko MEGA)">Download Installer (via MEGA)</span>
+      </a>
+      <div class="progress-bar" id="progressContainer"><div class="progress" id="progressFill"></div></div>
+    </div>
+
+    <div class="gallery">
+      <h3 data-en="Screenshots" data-hr="Snimke zaslona">Screenshots</h3>
+      <div class="screenshot-grid">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/433340/ss_d923566424cee1c6d82ccde7336b02057d3409fc.600x338.jpg" 
+             alt="Slime Rancher - Ranch View" loading="lazy">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/433340/ss_e43a384a5d5ab9bcb943423c1e264a54ce840c43.600x338.jpg" 
+             alt="Slime Rancher - Pink Slimes" loading="lazy">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/433340/ss_d8956627f92cd7b2b17ea024ac0fcbbaad6bdeb7.600x338.jpg" 
+             alt="Slime Rancher - Crystal Slimes" loading="lazy">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/433340/ss_5339a74c4563d40a1d8a5638db2a9ed59c5b883b.600x338.jpg" 
+             alt="Slime Rancher - Exploration" loading="lazy">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/433340/ss_d0e6a30325a9f7ff4fb3d6ba344c4131bb5f98cb.600x338.jpg" 
+             alt="Slime Rancher - Tarr Slimes" loading="lazy">
+      </div>
+      <div class="credits" data-en="Screenshots courtesy of Steam and Monomi Park" 
+           data-hr="Snimke zahvaljujući Steamu i Monomi Parku">
+        Screenshots courtesy of Steam and Monomi Park
+      </div>
+    </div>
+
+    <div class="sysreq">
+      <h3 data-en="System Requirements" data-hr="Sistemski Zahtjevi">System Requirements</h3>
+      <ul>
+        <li>OS: Windows 10 (64‑bit)</li>
+        <li>RAM: 4 GB</li>
+        <li>GPU: GTX 660 / Radeon HD 7950</li>
+        <li>Disk: 1 GB free space</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Dark/Light mode toggle
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('mode', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('mode') === 'dark') document.body.classList.add('dark');
+
+    // Language toggle
+    function toggleLang() {
+      const currentLang = localStorage.getItem('lang') === 'hr' ? 'en' : 'hr';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.dataset[currentLang];
+      });
+      localStorage.setItem('lang', currentLang);
+    }
+    if (localStorage.getItem('lang') === 'hr') toggleLang();
+
+    // Lightbox functionality
+    document.querySelectorAll('.screenshot-grid img').forEach(img => {
+      img.addEventListener('click', () => {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+          <span class="close">&times;</span>
+          <img class="modal-content" src="${img.src.replace('.600x338.jpg', '.1920x1080.jpg')}" alt="${img.alt}">
+        `;
+        document.body.appendChild(modal);
+        modal.style.display = 'flex';
+        
+        modal.querySelector('.close').addEventListener('click', () => {
+          modal.remove();
+        });
+        
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.remove();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
